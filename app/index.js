@@ -38,8 +38,17 @@ class App extends Component {
   renderItem = ({ item }) => {
     const { forecast } = this.state
 
+    let time;
+    const date = new Date(forecast.dt*1000)
+    const hours = date.getHours()
+    const minutes = '0' + date.getMinutes()
+
+    time = hours + ':' + minutes.substr(-2)
+
     return (
       <ForecastCard
+        temp={forecast.main.temp}
+        time={time}
         detail={item}
         location={forecast.name}
       />
